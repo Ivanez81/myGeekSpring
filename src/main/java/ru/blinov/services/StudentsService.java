@@ -18,7 +18,6 @@ public class StudentsService {
     }
 
     public Student getStudentById(Long id) {
-        Student student = studentsRepository.findOneById(id);
-        return student;
+        return studentsRepository.findOneById(id);
     }
 }
