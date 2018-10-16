@@ -1,0 +1,33 @@
+package ru.blinov.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import ru.blinov.entities.Course;
+import ru.blinov.services.CoursesService;
+
+@Controller
+@RequestMapping("/courses")
+public class CoursesController {
+
+    private CoursesService coursesService;
+
+    @Autowired
+    public void setCoursesService(CoursesService coursesService) {
+        this.coursesService = coursesService;
+    }
+
+    public CoursesController() {
+    }
+
+    // http://localhost:8189/courses/showCourseById?id=2
+    @RequestMapping(path="/showCourseById", method= RequestMethod.GET)
+    public String showCourseById(Model model, @RequestParam Long id) {
+        Course course = coursesService.getCourseById(id);
+        model.addAttribute("course", course);
+        return "course-by-id";
+    }
+}
