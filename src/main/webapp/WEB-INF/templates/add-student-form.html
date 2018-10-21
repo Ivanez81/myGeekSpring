@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>MyGeekSpring</title>
+    <head th:insert="~{fragments/my-head :: header}"></head>
+</head>
+
+<body>
+<div class="container">
+    <nav>
+        <div th:insert="~{fragments/my-nav :: menu}"></div>
+    </nav>
+
+    <main>
+        <form th:action="@{/students/add}" th:object="${student}" method="post">
+            First Name: <input type="text" th:field="*{name}"/>
+            <br>
+            <div class="submit">
+                <button name="addStudent" type="submit">Add student</button>
+            </div>
+
+        </form>
+    </main>
+</div>
+</body>
+
+<footer>
+    <div th:insert="~{fragments/my-footer :: foot}"></div>
+</footer>
+</html>

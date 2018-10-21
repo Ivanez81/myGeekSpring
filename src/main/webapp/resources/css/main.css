@@ -1,3 +1,8 @@
 h1 {
     color: #FF0000;
 }
+
+.container {
+    display: flex;
+    flex-direction: column;
+}

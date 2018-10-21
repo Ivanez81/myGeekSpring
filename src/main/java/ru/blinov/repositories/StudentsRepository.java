@@ -11,6 +11,16 @@ import java.util.List;
 public interface StudentsRepository extends CrudRepository<Student, Long> {
     Student findStudentById(Long id);
 
+    @Query("SELECT s FROM Student s LEFT JOIN s.courses c GROUP BY s.id ORDER BY COUNT(c) DESC")
+    List<Student> getStudentsByCoursesCountDescHQL();
+
+//    @Query(value = "SELECT s.id\n" +
+//            "FROM students s\n" +
+//            "LEFT JOIN students_courses c on s.id = c.student_id\n" +
+//            "GROUP BY s.id\n" +
+//            "ORDER BY count(distinct c.course_id) DESC;", nativeQuery = true)
+//    List<Integer> getStudentsIdsByCoursesCountDesc();
+
 //    @Query("SELECT s FROM Student s ")
 //    List<Student> findAllStudents();
 
