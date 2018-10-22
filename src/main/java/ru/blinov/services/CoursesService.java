@@ -3,7 +3,11 @@ package ru.blinov.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.blinov.entities.Course;
+import ru.blinov.entities.Student;
 import ru.blinov.repositories.CoursesRepository;
+
+import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class CoursesService {
@@ -18,7 +22,23 @@ public class CoursesService {
     public CoursesService() {
     }
 
+    @Transactional
     public Course getCourseById(Long id) {
         return coursesRepository.findCourseById(id);
     }
+
+    @Transactional
+    public List<Course> getAllCourses() {
+        return (List)coursesRepository.findAll();
+    }
+
+    @Transactional
+    public List<Course> getAvailableCoursesForStudent(List<Course> studentCourses) {
+        return coursesRepository.getAvailableCoursesByStudent(studentCourses);
+    }
+
+//    @Transactional
+//    public List<Course> getAvailableCoursesForStudentId(Student student) {
+//        return coursesRepository.getAvailableCoursesByStudentId(student);
+//    }
 }

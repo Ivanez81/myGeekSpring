@@ -1,11 +1,11 @@
 package ru.blinov.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import ru.blinov.entities.Student;
 import ru.blinov.repositories.StudentsRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -20,14 +20,25 @@ public class StudentsService {
     public StudentsService() {
     }
 
+    @Transactional
     public Student getStudentById(Long id) {
         return studentsRepository.findStudentById(id);
     }
 
-//    public List<Student> getAllStudents() {
-//        return studentsRepository.findAllStudents();
-////        return (List)studentsRepository.findAll();
-////        return studentsRepository.getStudentsIdsByCoursesCountDesc();
-//    }
+    @Transactional
+    public List<Student> getAllStudentsList() {
+//        return (List<Student>)studentsRepository.findAll();
+        return studentsRepository.getStudentsByCoursesCountDescHQL();
+    }
+
+    @Transactional
+    public void mergeStudent(Student s) {
+        studentsRepository.save(s);
+    }
+
+    public void removeById(Long id) {
+        studentsRepository.deleteById(id);
+    }
+
 
 }

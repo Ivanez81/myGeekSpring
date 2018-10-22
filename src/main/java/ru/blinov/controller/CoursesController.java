@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.blinov.entities.Course;
 import ru.blinov.services.CoursesService;
 
+import javax.transaction.Transactional;
+
 @Controller
 @RequestMapping("/courses")
+@Transactional
 public class CoursesController {
 
     private CoursesService coursesService;

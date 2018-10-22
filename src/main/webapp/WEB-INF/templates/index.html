@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>MyGeekSpring</title>
+    <head th:insert="~{fragments/my-head :: header}"></head>
+</head>
+
+<body>
+<div class="container">
+    <nav>
+        <div th:insert="~{fragments/my-nav :: menu}"></div>
+    </nav>
+    <main>
+        <h1>Welcome page</h1>
+        <h2>Index:</h2>
+        <br>
+        <a href="/students/list">Show students list</a>
+        <br>
+        <a href="/students/add">Add new student</a>
+    </main>
+</div>
+</body>
+
+<footer>
+    <div th:insert="~{fragments/my-footer :: foot}"></div>
+</footer>
+
+</html>

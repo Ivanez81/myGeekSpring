@@ -2,6 +2,7 @@ package ru.blinov.entities;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.List;
@@ -33,6 +34,7 @@ public class Course {
             joinColumns=@JoinColumn(name="course_id"),
             inverseJoinColumns=@JoinColumn(name="student_id")
     )
+    @Cascade({org.hibernate.annotations.CascadeType.DELETE, org.hibernate.annotations.CascadeType.DETACH})
     @Getter
     @Setter
     private List<Student> students;
