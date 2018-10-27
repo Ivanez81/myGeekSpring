@@ -1,6 +1,7 @@
 package ru.blinov.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +29,7 @@ public class CoursesController {
 
     // http://localhost:8189/courses/showCourseById?id=2
     @RequestMapping(path="/showCourseById", method= RequestMethod.GET)
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     public String showCourseById(Model model, @RequestParam Long id) {
         Course course = coursesService.getCourseById(id);
         model.addAttribute("course", course);

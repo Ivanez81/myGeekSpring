@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <title>Students List</title>
     <head th:insert="~{fragments/my-head :: header}"></head>
@@ -8,7 +9,7 @@
 <body>
 <div class="container">
     <nav>
-        <div th:insert="~{fragments/my-nav :: menu}"></div>
+        <div th:replace="~{fragments/my-nav :: menu(StudentsList)}"></div>
     </nav>
 
     <main>
@@ -19,7 +20,7 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Courses Count</th>
-                <th>Actions</th>
+                <th sec:authorize="hasAnyRole('ADMIN', 'MANAGER')">Actions</th>
             </tr>
             </thead>
 
@@ -27,21 +28,10 @@
             <tr th:each="student : ${studentsList}">
                 <td th:text="${student.id}"></td>
                 <td th:text="${student.name}"></td>
-                <!--<td th:text="${student.courses}"></td>-->
                 <td th:text="${student.courses.size()}"></td>
-                <td>
+                <td sec:authorize="hasAnyRole('ADMIN', 'MANAGER')">
                     <a class="btn btn-primary" th:href="'/students/' + ${student.id} + '/edu'" role="button">Courses Info</a>
                 </td>
-                <!--<td>-->
-
-                    <!--<p th:if="${student.name.length()} &gt; 3">-->
-                        <!--Normal-->
-                    <!--</p>-->
-                    <!--<p class="p-3 mb-2 bg-danger text-white" th:unless="${student.name.length()} &gt; 3">-->
-                        <!--To short-->
-                    <!--</p>-->
-                <!--</td>-->
-
             </tr>
         </table>
         <br>

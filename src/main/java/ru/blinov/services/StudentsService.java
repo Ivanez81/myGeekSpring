@@ -36,9 +36,9 @@ public class StudentsService {
         studentsRepository.save(s);
     }
 
+    @Transactional
     public void removeById(Long id) {
         studentsRepository.deleteById(id);
     }
-
 
 }

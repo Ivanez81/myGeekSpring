@@ -3,7 +3,6 @@ package ru.blinov.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.blinov.entities.Course;
-import ru.blinov.entities.Student;
 import ru.blinov.repositories.CoursesRepository;
 
 import javax.transaction.Transactional;

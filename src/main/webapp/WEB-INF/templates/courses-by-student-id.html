@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <title>Student Courses</title>
     <head th:insert="~{fragments/my-head :: header}"></head>
@@ -8,7 +8,7 @@
 <body>
 <div class="container">
     <nav>
-        <div th:insert="~{fragments/my-nav :: menu}"></div>
+        <div th:insert="~{fragments/my-nav :: menu(CoursesList)}"></div>
     </nav>
 
     <main>
@@ -20,14 +20,14 @@
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>Actions</th>
+                <th sec:authorize="hasRole('ADMIN')">Actions</th>
             </tr>
             </thead>
 
             <tr th:each="course : ${coursesByStudentId}">
                 <td th:text="${course.id}"></td>
                 <td th:text="${course.name}"></td>
-                <td>
+                <td sec:authorize="hasRole('ADMIN')">
                     <a class="btn btn-danger" th:href="${#httpServletRequest.getRequestURI()} + '/remove/' + ${course.id}"
                        role="button">Unroll</a>
                 </td>
@@ -41,14 +41,14 @@
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>Actions</th>
+                <th sec:authorize="hasRole('ADMIN')">Actions</th>
             </tr>
             </thead>
 
             <tr th:each="avCourse : ${coursesList}">
                 <td th:text="${avCourse.id}"></td>
                 <td th:text="${avCourse.name}"></td>
-                <td>
+                <td sec:authorize="hasRole('ADMIN')">
                     <a class="btn btn-primary" th:href="${#httpServletRequest.getRequestURI()} + '/add/' + ${avCourse.id}"
                        role="button">Enroll</a>
                 </td>
