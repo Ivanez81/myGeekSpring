@@ -11,4 +11,9 @@ public class MainController {
         return "index";
     }
 
+    @RequestMapping("favicon.ico")
+    public String appFavicon() {
+        return "forward:/resources/favicon.ico";
+    }
+
 }

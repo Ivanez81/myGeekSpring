@@ -9,10 +9,11 @@
 <body>
 <div class="container">
     <nav>
-        <div th:insert="~{fragments/my-nav :: menu}"></div>
+        <div th:insert="~{fragments/my-nav :: menu(addStudent)}"></div>
     </nav>
 
     <main>
+        <!--/*@thymesVar id="student" type="ru.blinov.entities.Student"*/-->
         <form th:action="@{/students/add}" th:object="${student}" method="post">
             First Name: <input type="text" th:field="*{name}"/>
             <br>
