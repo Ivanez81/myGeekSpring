@@ -21,7 +21,7 @@
         <spring.data.version>2.1.1.RELEASE</spring.data.version>
         <hibernate.version>5.3.7.Final</hibernate.version>
 
-        <jetty.version>9.4.12.v20180830</jetty.version>
+        <jetty.version>9.4.17.v20190418</jetty.version>
         <thymeleaf.version>3.0.10.RELEASE</thymeleaf.version>
     </properties>
 
